@@ -32,3 +32,5 @@ Git基本常用命令如下：
    git push origin master  ：Git会把master分支推送到远程库对应的远程分支上
    git remote -v 查看远程库信息
    git remote rm origin(删除关联的origin的远程库)
+   git log命令显示从最近到最远的显示日志
+   git reset  --hard HEAD^ 那么如果要回退到上上个版本只需把HEAD^ 改成 HEAD^^ 以此类推
