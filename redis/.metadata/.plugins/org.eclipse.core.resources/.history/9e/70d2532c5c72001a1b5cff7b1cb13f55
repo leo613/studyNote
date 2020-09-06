@@ -1,0 +1,24 @@
+package com.qd.test;
+
+import com.qd.util.RedisUtil;
+
+import redis.clients.jedis.Jedis;
+
+public class ListTest {
+public static void main(String[] args) {
+	Jedis jedis=RedisUtil.getJedis();
+	
+	try {
+		//删除mylist 里面所有内容
+		jedis.del("mylist");
+		
+		
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}finally {
+		RedisUtil.returnResource(jedis);
+	}
+}
+}

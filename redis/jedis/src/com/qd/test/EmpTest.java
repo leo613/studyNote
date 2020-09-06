@@ -1,0 +1,48 @@
+package com.qd.test;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.qd.po.Dept;
+import com.qd.po.EmpInfo;
+import com.qd.util.RedisUtil;
+
+import redis.clients.jedis.Jedis;
+
+/**
+ * hmset emp:1001 emp_id 1001 emp_name zhangsan emp_sex man emp_age 18 de_id 1
+ * hmset emp:1002 emp_id 1002 emp_name lisi  emp_sex women emp_age 19  de_id 1
+ * @author qidong_lu
+ *
+ */
+public class EmpTest {
+  public static void main(String[] args) {
+		Jedis jedis=RedisUtil.getJedis();
+		try {	
+			//获取员工信息
+			EmpInfo empInfo=new EmpInfo();
+		      empInfo.setId(jedis.hget("emp:1001","emp_id"));
+		      empInfo.setName(jedis.hget("emp:1001","emp_name"));
+		      empInfo.setSex(jedis.hget("emp:1001","emp_sex"));
+		      empInfo.setAge(Integer.valueOf(jedis.hget("emp:1001","emp_age")));
+		      System.out.println(empInfo);
+				
+		     //部门编号
+		      String deId=jedis.hget("emp:1001", "de_id");
+		      
+		      Dept de=new Dept();
+		      de.setDeId(Integer.valueOf(jedis.hget("dept:"+deId, "de_id")));
+		      de.setDeName(jedis.hget("dept:"+deId, "de_name"));
+		      empInfo.setDept(de);	     
+		      System.out.println(empInfo);
+		      	      
+		      
+		} catch (Exception e) {
+			// TODO: handle exception
+		  e.printStackTrace();
+		}finally {
+			RedisUtil.returnResource(jedis);
+		}	
+}
+}

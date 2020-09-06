@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/com/qd/test/EmpTest.java=UTF-8
+encoding//src/com/qd/test/HashTest.java=UTF-8
+encoding//src/com/qd/test/ListTest.java=UTF-8
+encoding//src/com/qd/test/RedisTest.java=UTF-8
+encoding//src/com/qd/test/SetTest.java=UTF-8
+encoding//src/com/qd/test/SortedSetTest.java=UTF-8
+encoding//src/com/qd/test/StringTest.java=UTF-8
+encoding//src/com/qd/test/jedisTest.java=UTF-8
+encoding//src/com/qd/util/RedisUtil.java=UTF-8

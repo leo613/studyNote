@@ -1,0 +1,44 @@
+package com.qd.test;
+
+import java.util.Set;
+
+import com.qd.util.RedisUtil;
+
+import redis.clients.jedis.Jedis;
+
+public class SortedSetTest {
+	
+  public static void main(String[] args) {
+	  Jedis jedis=RedisUtil.getJedis();
+		try {	
+           //添加
+           jedis.zadd("users", 1001,"zhangsan");
+           jedis.zadd("users", 1002,"lisi");
+           jedis.zadd("users", 9527,"华安");
+           jedis.zadd("users", 2002,"八戒");
+           //由小到大获取
+           Set<String>setvalues=jedis.zrange("users", 0, -1);
+           System.out.println(setvalues);
+           
+           //由大到小
+           Set<String>setvalues2=jedis.zrevrange("users", 0, -1);
+           System.out.println(setvalues2);
+           
+           
+           //添加
+           jedis.zadd("zset", 3.1,"aa");
+           jedis.zadd("zset", 1.2,"bb");
+           jedis.zadd("zset", 2.1,"cc");
+           jedis.zadd("zset", 5.6,"dd");
+       
+           System.out.println( jedis.zrevrange("zset", 0, -1));
+           
+           
+		} catch (Exception e) {
+			// TODO: handle exception
+		  e.printStackTrace();
+		}finally {
+			RedisUtil.returnResource(jedis);
+		}
+}
+}

@@ -1,0 +1,24 @@
+package com.qd.test;
+
+import java.util.Set;
+
+import com.qd.util.RedisUtil;
+
+import redis.clients.jedis.Jedis;
+
+public class SortedSetTest {
+	
+  public static void main(String[] args) {
+	  Jedis jedis=RedisUtil.getJedis();
+		try {	
+
+
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		  e.printStackTrace();
+		}finally {
+			RedisUtil.returnResource(jedis);
+		}
+}
+}

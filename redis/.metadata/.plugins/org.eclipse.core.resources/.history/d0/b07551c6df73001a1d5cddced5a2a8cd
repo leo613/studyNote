@@ -1,0 +1,10 @@
+package com.qd.test;
+/**
+ * hmset emp:1001 emp_id 1001 emp_name zhangsan emp_sex man emp_age 18 
+ * hmset emp:1002 emp_id 1002 emp_name lisi  emp_sex women emp_age 19
+ * @author qidong_lu
+ *
+ */
+public class EmpTest {
+
+}

@@ -1,0 +1,33 @@
+package com.qd.test;
+
+import java.util.List;
+
+import com.qd.util.RedisUtil;
+
+import redis.clients.jedis.Jedis;
+
+public class RedisTest {
+	public static void main(String[] args) {
+    
+		//查询所有的部门信息
+		
+		Jedis jedis=RedisUtil.getJedis();
+		
+		try {
+	    List<String>list=jedis.lrange("dept:de_id", 0, -1);
+			for (String deId : args) {
+				String id=jedis.hget("dept:"+deId, "de_id");
+				String name=jedis.hget("dept:"+deId,"name");
+				
+				
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			RedisUtil.returnResource(jedis);
+		}
+		
+	}
+}

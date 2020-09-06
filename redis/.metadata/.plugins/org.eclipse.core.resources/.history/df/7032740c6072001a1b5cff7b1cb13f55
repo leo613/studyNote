@@ -1,0 +1,31 @@
+package com.qd.test;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.qd.util.RedisUtil;
+
+import redis.clients.jedis.Jedis;
+
+public class SetTest {
+    public static void main(String[] args) {
+    	Jedis jedis=RedisUtil.getJedis();
+		try {	
+			jedis.sadd("userSet", "唐僧");
+			jedis.sadd("userSet", "悟空");
+			
+			Set<String> setValues=jedis.smembers("userSet");
+			System.out.println(setValues);
+				
+		} catch (Exception e) {
+			// TODO: handle exception
+		  e.printStackTrace();
+		}finally {
+			RedisUtil.returnResource(jedis);
+		}
+		
+	}
+
+}

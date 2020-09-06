@@ -1,0 +1,8 @@
+package com.qd.po;
+
+public class Dept {
+	private int deId;
+	private String deName;
+	
+
+}

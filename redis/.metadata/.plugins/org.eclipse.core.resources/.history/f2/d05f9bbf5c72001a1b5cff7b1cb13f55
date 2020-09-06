@@ -1,0 +1,47 @@
+package com.qd.test;
+
+import java.util.List;
+
+import com.qd.util.RedisUtil;
+
+import redis.clients.jedis.Jedis;
+
+public class ListTest {
+public static void main(String[] args) {
+	Jedis jedis=RedisUtil.getJedis();
+	
+	try {
+		//删除mylist 里面所有内容
+		jedis.del("mylist");
+		
+		//从左边添加数据
+		jedis.lpush("mylist", "aa");
+		jedis.lpush("mylist", "bb");
+		jedis.lpush("mylist", "cc");
+		
+		//获取元素
+		List<String> values=jedis.lrange("mylist", 0, -1);
+		System.out.println(values);
+		
+		//清空
+		jedis.flushDB();
+		
+		//从右边添加数据
+		jedis.rpush("mylist", "11");
+		jedis.rpush("mylist", "12");
+		jedis.rpush("mylist", "13");
+		jedis.rpush("mylist", "14");
+		
+		//获取元素
+		List<String> values=jedis.lrange("mylist", 0, -1);
+		System.out.println(values);
+		
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}finally {
+		RedisUtil.returnResource(jedis);
+	}
+}
+}

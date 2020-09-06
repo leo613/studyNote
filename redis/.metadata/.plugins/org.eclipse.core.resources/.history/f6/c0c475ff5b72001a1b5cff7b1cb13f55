@@ -1,0 +1,19 @@
+package com.qd.test;
+
+import com.qd.util.RedisUtil;
+
+import redis.clients.jedis.Jedis;
+
+public class ListTest {
+public static void main(String[] args) {
+	Jedis jedis=RedisUtil.getJedis();
+	
+	try {
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+	}finally {
+		RedisUtil.returnResource(jedis);
+	}
+}
+}
